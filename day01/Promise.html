@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  const a = 5
+  // new Promise((resolve,reject)=>{
+  //   setTimeout(()=>{
+  //     if(a==5){
+  //       resolve('hello.')
+  //     }else{
+  //       reject('nonono')
+  //     }
+  //   },2000)
+  // }).then(res=>{
+  //   console.log(res)
+  // },err =>{
+  //   console.log(err)
+  // })
+
+
+  new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+        resolve('aaaa')
+    },1000)
+  }).then(res=>{
+    console.log(res,'第一次处理')
+    return Promise.resolve(res+'1111')
+  }).then(res=>{
+    console.log(res,'第二次处理')
+    return Promise.resolve(res+'2222')
+      }).then(res=>{
+        console.log(res)
+  })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .active{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <span v-html="url"></span>
+    <div v-bind:class="test()">Heelo Word</div>
+    <div v-bind:class="{'active':isactive,line:isactive}">Heelo Word</div>
+    <button @click="change">改变</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+      el:'#app',
+        template:'<div><p>hhhhh</p></div>',
+
+      data:{
+        message:'ninhao',
+        url:'<a href="t1.html">baidu</a>',
+        isactive:true,
+        imgUrl:'https://cn.vuejs.org/images/xinguan.png',
+      },
+      methods:{
+        change:function () {
+          this.isactive = !this.isactive ;
+        },
+        test:function () {
+          return {active:this.isactive};
+        }
+      }
+    })
+</script>
+</body>
+</html>

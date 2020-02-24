@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+
+  <cpn><input type="text"> </cpn>
+
+  <cpn ><h2 slot="center">大标题 </h2></cpn>
+</div>
+
+
+
+<template id="cpn">
+  <div><h2>biaoti</h2>
+    <slot name='lseft'><p >默认</p></slot>
+    <slot name="center"><p >默认</p></slot>
+    <slot name="right"><p >默认</p></slot>
+  </div>
+</template>
+<script src="../../js/vue.js"></script>
+<script>
+  const cpnC =Vue.extend({
+    template:'#cpn'
+  })
+  // Vue.component('cpn',cpnC)
+  var app = new Vue({
+    el:'#app',
+    data:{
+      message:33333
+    },
+    components:{
+      cpn:cpnC
+    }
+  })
+
+</script>
+</body>
+</html>

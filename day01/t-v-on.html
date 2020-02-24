@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <button @click="change(111)">tijiao</button>
+
+  <!--1. .stop的使用，btn的click事件不会传播，不会冒泡到上层，调用event.stopPropagation() -->
+
+  <form action="t1.html">
+    <input type="text" @blur="keyout">账户
+    <input type="text" @keyup.enter="keyup">密码
+    <input type="button" @click.pervent="sub" value="submit">
+  </form>
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      firstName:"skt t1",
+
+    },
+    computed:{
+
+    },
+    methods:{
+      change(id,e){
+        console.log(id)
+      },
+      divClick(){
+        console.log('divClick')
+      },
+      btnClick(){
+        console.log('btnClick')
+      },
+      sub(){
+        console.log('subClick')
+      },
+      keyup(){
+        console.log('keyup')
+      }
+      ,
+      keyout(){
+        console.log('keyout')
+      }
+    }
+  })
+</script>
+</body>
+</html>

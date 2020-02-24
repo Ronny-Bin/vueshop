@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+
+  <cpn >
+    <template slot-scope="slot">
+      <span v-for="item in slot.data "> {{item}}-</span>
+    </template>
+  </cpn>
+
+</div>
+
+<template id="cpn">
+  <div><h2>biaoti</h2>
+
+    <slot  :data="parname">
+      <ul>
+        <li v-for="item in parname"> {{item}}</li>
+      </ul>
+    </slot>
+
+  </div>
+</template>
+<script src="../../js/vue.js"></script>
+<script>
+  const cpnC =Vue.extend({
+    template:'#cpn',
+    data(){
+      return{
+        parname:['php','python','java']
+      }
+    }
+  })
+  // Vue.component('cpn',cpnC)
+  var app = new Vue({
+    el:'#app',
+    data:{
+      message:33333
+    },
+    components:{
+      cpn:cpnC
+    }
+  })
+
+</script>
+</body>
+</html>

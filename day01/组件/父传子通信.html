@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <cpn :fcmovies="movies"></cpn>
+</div>
+<template id="clidCpn" >
+  <div><h2>子组件{{cmovies}}</h2></div>
+</template>
+
+<template id="Cpn" >
+  <div><h2>父组件{{message}}</h2>
+    <ccpn :cmovies="fcmovies"></ccpn>
+  </div>
+</template>
+<script src="../../js/vue.js"></script>
+<script>
+
+//子组件
+  const clidCpn = {
+    template:'#clidCpn',
+    data(){
+      return{
+        message:"99922",
+      }
+    },//
+   // props:['cmovies']//数组写法
+    //对象写法
+    props:{
+      cmovies: {
+        type: Array,
+        default () {
+          return [1, 2, 3, 4]
+        }}}
+  }
+
+
+  //父组件
+  var app = new Vue({
+    el:'#app',
+    data:{
+      message:33333,
+      movies:['aaa','bbb','ccc']
+    },
+    components:{
+      cpn:{
+        template:'#Cpn',
+        components:{
+          ccpn:clidCpn
+        },
+        data(){
+          return{
+            message:'22222',
+           //movies:['aaa','bbb','ccc']
+          }
+        },
+        props:['fcmovies']
+      }
+    }
+  })
+
+</script>
+</body>
+</html>

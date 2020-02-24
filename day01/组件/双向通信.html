@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <p>{{num1}}</p>
+  <cpn :fnum1="num1" @fnuminput="finput"></cpn>
+  <!--变量作用域名num1 finput都是父级大属性和方法-->
+</div>
+
+
+<template id="clidCpn" >
+  <div>
+    <h2>props{{fnum1}}</h2>
+    <h2>data{{dnum1}}</h2>
+    <input type="text" v-model="dnum1">
+    <!-- <input type="text" :value="dnum1" @input="numInput">-->
+   </div>
+ </template>
+
+
+
+
+
+ <script src="../../js/vue.js"></script>
+ <script>
+   //父组件
+   var app = new Vue({
+     el:'#app',
+     data:{
+       num1:2222,
+       //num2:2
+     },
+     methods:{
+       finput(value){
+         this.num1 = value
+       }
+     },
+     components:{
+       cpn:{
+         template:'#clidCpn',
+         data(){
+           return{
+             dnum1:this.fnum1
+           }
+         },
+         props:{
+           fnum1:Number,
+         },
+         // methods:{
+         //   numInput(e){
+         //       this.dnum1 = e.target.value;
+         //       this.$emit('fnuminput',this.dnum1)
+         //   }
+         // }
+         //watch  方法
+         watch:{
+           dnum1(newValue){
+             this.dnum1 = newValue;
+             this.$emit('fnuminput',this.dnum1)
+           }
+         }
+       }
+     }
+   })
+
+ </script>
+ </body>
+ </html>

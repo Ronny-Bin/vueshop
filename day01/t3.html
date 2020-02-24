@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <!-- Mastache语法 -->
+  <h2>{{firstName+ " " + lastName}}</h2>
+  <!-- 方法 -->
+  <h2>{{getFullName()}}</h2>
+  <!-- 计算属性-->
+  <h2>{{fullName}}</h2>
+  <h2>总价格：{{totalPrice}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      firstName:"skt t1",
+      lastName:"faker",
+      books:[
+        {id:110,name:"JavaScript从入门到入土",price:119},
+        {id:111,name:"Java从入门到放弃",price:80},
+        {id:112,name:"编码艺术",price:99},
+        {id:113,name:"代码大全",price:150},
+      ]
+    },
+    computed:{
+      fullName:function () {
+        return this.firstName+this.lastName;
+      },
+      totalPrice(){
+        let result= 0;
+        for (let i=1;i<this.books.length;i++){
+            return result+= this.books[i].price;
+        }
+        return result;
+      }
+    },
+    methods:{
+      getFullName:function () {
+        return this.firstName+this.lastName;
+      }
+    }
+  })
+</script>
+</body>
+</html>
